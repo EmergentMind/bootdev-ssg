@@ -1,0 +1,9 @@
+[project]
+name = "project-name"
+version = "0.1.0"
+description = "PROJECT DESCRIPTION"
+requires-python = ">=3.13"
+dependencies = ["coverage", "python-dotenv"]
+
+[tool.uv]
+managed = true

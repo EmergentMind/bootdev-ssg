@@ -1,0 +1,16 @@
+# python
+"*.py?"
+"__pycache__/"
+".venv/"
+
+# Environment
+.env
+
+# Devenv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
+# direnv
+.direnv
+.envrc
