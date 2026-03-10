@@ -99,7 +99,7 @@ class TestHTMLNode(unittest.TestCase):
         node = LeafNode("p", "Hello, world!")
         self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
 
-    def test_leaf_to_html_img(self):
+    def test_leaf_to_html_link(self):
         node = LeafNode("a", "Link text", {"href": "foo.url"})
         self.assertEqual(node.to_html(), '<a href="foo.url">Link text</a>')
 
@@ -151,4 +151,4 @@ class TestParentNode(unittest.TestCase):
         )
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(props)
