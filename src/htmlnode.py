@@ -30,7 +30,7 @@ class LeafNode(HTMLNode):
 
     def to_html(self):
         if self.value is None:
-            raise ValueError
+            raise ValueError("Missing required 'value' argument for LeafNode")
         if self.tag is None:
             return self.value
         else:
@@ -38,3 +38,26 @@ class LeafNode(HTMLNode):
             c_tag = f"</{self.tag}>"
 
             return o_tag + self.value + c_tag
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag, None, children, props)
+
+    def __repr__(self):
+        return f"ParentNode({self.tag}, {self.children}, {self.props})"
+
+    def to_html(self):
+        if self.tag is None:
+            raise ValueError("Missing required 'tag' argument for ParentNode")
+        if self.children is None:
+            raise ValueError(
+                "Missing required 'children' argument for ParentNode"
+            )
+        else:
+            o_tag = f"<{self.tag}{self.props_to_html()}>"
+            c_tag = f"</{self.tag}>"
+            content = ""
+            for child in self.children:
+                content += child.to_html()
+
+            return o_tag + content + c_tag
