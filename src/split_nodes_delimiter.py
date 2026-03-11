@@ -1,20 +1,23 @@
-from textnode import TextNode, TextType
+from classes.textnode import TextNode, TextType
 
-def split_node_delimiter(old_nodes, delimiter, text_type):
+def split_nodes_delimiter(old_nodes, delimiter, text_type):
     new_nodes = []
     for node in old_nodes:
-        if node.text_type is not TextType.PLAIN:
+        if node.text_type is not TextType.TEXT:
             new_nodes.append(node)
             continue
         text_parts = node.text.split(delimiter)
         if is_valid_md(text_parts):
             part_nodes = []
             for i in range(0, len(text_parts)):
-                part_type = TextType.PLAIN
+                part_type = TextType.TEXT
                 if (i+1) % 2 == 0:
                     # every second text_part is of type text_type
                     part_type = text_type
-                part_nodes.append(TextNode(text_parts[i], part_type))
+                if text_parts[i] =="":
+                    continue
+                else:
+                    part_nodes.append(TextNode(text_parts[i], part_type))
             new_nodes.extend(part_nodes)
     return new_nodes
 
