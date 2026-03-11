@@ -23,6 +23,6 @@ def is_valid_md(list):
     if len(list) % 2 != 0:
         return True
     else:
-        raise Excpetion(
+        raise Exception(
             "Encountered invalid markdown while splitting the node"
         )
