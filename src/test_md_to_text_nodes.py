@@ -1,17 +1,17 @@
 import unittest
 from classes.textnode import TextType
-from text_to_textnodes import text_to_textnodes
+from md_to_text_nodes import md_to_text_nodes
 
 class TestTextNode(unittest.TestCase):
     def test_plain_text(self):
         input_text = "this is some text without nested elements"
-        result = text_to_textnodes(input_text)
+        result = md_to_text_nodes(input_text)
         self.assertEqual(result[0].text,"this is some text without nested elements")
         self.assertEqual(result[0].text_type,TextType.TEXT)
 
     def test_bold_text(self):
         input_text = "this is some text with a nested **bold text** element"
-        result = text_to_textnodes(input_text)
+        result = md_to_text_nodes(input_text)
         self.assertEqual(result[0].text, "this is some text with a nested ")
         self.assertEqual(result[0].text_type, TextType.TEXT)
         self.assertEqual(result[1].text, "bold text")
@@ -21,7 +21,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_bold_italic_text(self):
         input_text = "this is some text with a nested _italic text_ element and some **bold text**."
-        result = text_to_textnodes(input_text)
+        result = md_to_text_nodes(input_text)
         self.assertEqual(result[0].text, "this is some text with a nested ")
         self.assertEqual(result[0].text_type, TextType.TEXT)
         self.assertEqual(result[1].text, "italic text")
@@ -35,7 +35,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_code_bold_italic_text(self):
         input_text = "this is some text with a nested _italic text_ element and some **bold text** and some `code text`."
-        result = text_to_textnodes(input_text)
+        result = md_to_text_nodes(input_text)
         self.assertEqual(result[0].text, "this is some text with a nested ")
         self.assertEqual(result[0].text_type, TextType.TEXT)
         self.assertEqual(result[1].text, "italic text")

@@ -1,4 +1,4 @@
-def markdown_to_blocks(markdown):
+def md_to_blocks(markdown):
     return remove_empties( list(map(stripper, markdown.split("\n\n") ) ) )
 
 def stripper(str):

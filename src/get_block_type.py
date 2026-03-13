@@ -1,7 +1,7 @@
 import re
 from classes.blocktype import BlockType
 
-def block_to_block_type(md):
+def get_block_type(md):
     if re.findall(r"(^#{1,6} )", md):
         return BlockType.HEADING
     if re.findall(r"(`{3}.*?\n.*?\n`{3})", md):
