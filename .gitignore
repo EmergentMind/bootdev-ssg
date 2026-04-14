@@ -3,12 +3,14 @@
 __pycache__/
 .venv/
 
+public/
+
 # Environment
 .env
 .direnv
 .envrc
 
 # Devenv
-.devenv*
+.devenv/
 devenv.local.nix
 devenv.local.yaml
