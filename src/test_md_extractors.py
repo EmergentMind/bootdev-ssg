@@ -29,3 +29,34 @@ class TestTextNode(unittest.TestCase):
             "This is text with an [foo](https://foo.bar) and another [baz](https://baz.bar)"
         )
         self.assertListEqual([("foo", "https://foo.bar"),("baz", "https://baz.bar")], matches)
+
+
+class TestTextNode(unittest.TestCase):
+
+    def test_extract_title(self):
+        match = extract_stripped_title(
+            """
+# This is a title  
+## this is a header
+
+followed by a paragraph
+```
+and a code block
+```
+"""
+        )
+        self.assertEqual(match, "This is a title")
+
+    def test_extract_title_with_leading_spaces(self):
+        match = extract_stripped_title(
+            """
+#       This is a title  
+## this is a header
+
+followed by a paragraph
+```
+and a code block
+```
+"""
+        )
+        self.assertEqual(match, "This is a title")
