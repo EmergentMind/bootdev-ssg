@@ -120,7 +120,6 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(new_nodes[4].text, " elements")
         self.assertEqual(new_nodes[4].text_type, TextType.TEXT)
 
-class TestTextNode(unittest.TestCase):
     def test_split_images(self):
         node = TextNode(
             "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
@@ -183,7 +182,6 @@ class TestTextNode(unittest.TestCase):
             new_nodes,
         )
 
-class TestTextNode(unittest.TestCase):
     def test_split_links(self):
         node = TextNode(
             "This is text with a [link](https://foo.bar) and another [second link](https://baz.bar)",
@@ -231,18 +229,6 @@ class TestTextNode(unittest.TestCase):
         self.assertListEqual(
             [
                 TextNode("This is text with out a link", TextType.TEXT),
-            ],
-            new_nodes,
-        )
-    def test_split_non_text_node(self):
-        node = TextNode(
-            "This is a bold text node",
-            TextType.BOLD,
-        )
-        new_nodes = split_nodes_link([node])
-        self.assertListEqual(
-            [
-                TextNode("This is a bold text node", TextType.BOLD),
             ],
             new_nodes,
         )

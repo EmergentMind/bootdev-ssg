@@ -1,5 +1,5 @@
 import unittest
-from md_extractors import extract_md_images, extract_md_links
+from md_extractors import extract_md_images, extract_md_links, extract_stripped_title
 
 
 class TestTextNode(unittest.TestCase):
@@ -14,10 +14,6 @@ class TestTextNode(unittest.TestCase):
             "This is text with an ![image1](https://foo.png) and another ![image2](https://bar.png)"
         )
         self.assertListEqual([("image1", "https://foo.png"),("image2", "https://bar.png")], matches)
-
-
-class TestTextNode(unittest.TestCase):
-
     def test_extract_single_md_link(self):
         matches = extract_md_links(
             "This is text with an [foo](https://foo.bar)"
@@ -29,9 +25,6 @@ class TestTextNode(unittest.TestCase):
             "This is text with an [foo](https://foo.bar) and another [baz](https://baz.bar)"
         )
         self.assertListEqual([("foo", "https://foo.bar"),("baz", "https://baz.bar")], matches)
-
-
-class TestTextNode(unittest.TestCase):
 
     def test_extract_title(self):
         match = extract_stripped_title(

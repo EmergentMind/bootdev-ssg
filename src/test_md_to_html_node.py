@@ -1,5 +1,5 @@
 import unittest
-from md_to_html_nodes import md_to_html_nodes
+from md_to_html_node import md_to_html_node
 
 class TestTextNode(unittest.TestCase):
   def test_paragraphs(self):
@@ -12,7 +12,7 @@ This is another paragraph with _italic_ text and `code` here
 
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -27,7 +27,7 @@ the **same** even with inline stuff
 ```
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -39,7 +39,7 @@ the **same** even with inline stuff
 >This is some quoted text that _should_ have inline **formatting**
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -52,7 +52,7 @@ the **same** even with inline stuff
 - unordered list
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -65,7 +65,7 @@ the **same** even with inline stuff
 2. ordered list
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -77,7 +77,7 @@ the **same** even with inline stuff
 # h1
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -88,7 +88,7 @@ the **same** even with inline stuff
 ## h2
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -99,7 +99,7 @@ the **same** even with inline stuff
 ##### h5
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,
@@ -110,7 +110,7 @@ the **same** even with inline stuff
 ####### not a header
 """
 
-    node = md_to_html_nodes(md)
+    node = md_to_html_node(md)
     html = node.to_html()
     self.assertEqual(
         html,

@@ -47,7 +47,7 @@ def split_nodes_image(old_nodes):
         part = ""
         while i >= 0  and len(cur_str) > 0:
             # find start of next image tag
-            i = cur_str.find('!')
+            i = cur_str.find('![')
             if i == -1:
                 # no image tag found
                 part = TextNode(cur_str, TextType.TEXT)
@@ -63,7 +63,7 @@ def split_nodes_image(old_nodes):
                 node_parts.append(part)
                 cur_img += 1
 
-                # find end of current image tag and caputure remainder of string
+                # find end of current image tag and capture remainder of string
                 j = cur_str.find(')')
                 cur_str = cur_str[j+1:]
 
@@ -101,7 +101,7 @@ def split_nodes_link(old_nodes):
                 node_parts.append(part)
                 cur_link += 1
 
-                # find end of current link tag and caputure remainder of string
+                # find end of current link tag and capture remainder of string
                 j = cur_str.find(')')
                 cur_str = cur_str[j+1:]
 

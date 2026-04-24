@@ -35,9 +35,11 @@ class LeafNode(HTMLNode):
             return self.value
         else:
             o_tag = f"<{self.tag}{self.props_to_html()}>"
-            c_tag = f"</{self.tag}>"
-
-            return o_tag + self.value + c_tag
+            if self.tag == "img":
+              return o_tag
+            else:
+              c_tag = f"</{self.tag}>"
+              return o_tag + self.value + c_tag
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):
