@@ -1,7 +1,0 @@
-/home/ta/src/courses/bootdev/bootdev-ssg/.devenv/flake.json
-/home/ta/src/courses/bootdev/bootdev-ssg/.devenv.flake.nix
-/home/ta/src/courses/bootdev/bootdev-ssg/.env
-/home/ta/src/courses/bootdev/bootdev-ssg/devenv.local.nix
-/home/ta/src/courses/bootdev/bootdev-ssg/devenv.lock
-/home/ta/src/courses/bootdev/bootdev-ssg/devenv.nix
-/home/ta/src/courses/bootdev/bootdev-ssg/devenv.yaml
