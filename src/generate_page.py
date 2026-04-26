@@ -2,7 +2,7 @@ import os
 from md_to_html_node import md_to_html_node
 from md_extractors import extract_stripped_title
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basepath):
   print(f"Generating page from {from_path} to {dest_path} using {template_path}.")
   md = read_file(from_path)
   page = read_file(template_path)
@@ -11,6 +11,7 @@ def generate_page(from_path, template_path, dest_path):
   content = md_to_html_node(md).to_html()
 
   page = page.replace("{{ Title }}", title).replace("{{ Content }}", content)
+  page = page.replace("href=\"/", "href=\"" + basepath).replace("src=\"/", "src=\"" + basepath)
 
   write_file(dest_path, page)
 
@@ -24,7 +25,7 @@ def write_file(path, content):
   with open(path, 'w') as f:
     f.write(content)
 
-def generate_pages_recursive(dir_path, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path, template_path, dest_dir_path, basepath):
   src_contents = os.listdir(dir_path)
   for item in src_contents:
     cur_path = os.path.join(dir_path, item)
@@ -33,9 +34,9 @@ def generate_pages_recursive(dir_path, template_path, dest_dir_path):
         item_name_as_html = item.rstrip('.md') + ".html"
         dest_path = os.path.join(dest_dir_path, item_name_as_html)
         from_path = os.path.join(dir_path, item)
-        generate_page(from_path, template_path, dest_path)
+        generate_page(from_path, template_path, dest_path, basepath)
     else:
       nest_src_path = os.path.join(dir_path, item)
       nested_dest_path = dest_dir_path + '/' + item
-      generate_pages_recursive(nest_src_path, template_path, nested_dest_path)
+      generate_pages_recursive(nest_src_path, template_path, nested_dest_path, basepath)
 
